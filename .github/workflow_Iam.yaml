@@ -1,0 +1,14 @@
+name: IAM
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  terraform:
+    uses: jithin/gh-workflow-terraform/workflow.yaml@master
+    secrets: inherit
+    with:
+      account-type: workload
+      boundary: TestEngineering
+      DeployRole: SeedRole
+      working-directory: iam
