@@ -28,8 +28,8 @@ data "aws_iam_policy_document" "sauce_ui_automation_k8s_role_policy" {
       "s3:PutObjectVersionAcl",
     ]
     resources = [
-      "arn:aws:s3:::qualityengineering-banking-ui-automation-${var.env}",
-      "arn:aws:s3:::qualityengineering-banking-ui-automation-${var.env}/*"
+      "arn:aws:s3:::testengineering-sauce-ui-automation-${var.env}",
+      "arn:aws:s3:::testengineering-sauce-ui-automation-${var.env}/*"
     ]
   }
 }
@@ -37,12 +37,12 @@ data "aws_iam_policy_document" "sauce_ui_automation_k8s_role_policy" {
 
 module "sauce_ui_automation_k8s_role" {
   source          = "github.com/test-private/tf-module-k8s-iam-role.git"
-  name_prefix     = "BankingUIAutomation"
-  path            = "/k8s/qualityengineering/"
-  namespace       = "quality-engineering"
-  team            = "quality-engineering"
-  service_account = "banking-ui-automation"
+  name_prefix     = "sauceUIAutomation"
+  path            = "/k8s/testengineering/"
+  namespace       = "test-engineering"
+  team            = "test-engineering"
+  service_account = "sauce-ui-automation"
   policy          = data.aws_iam_policy_document.sauce_ui_automation_k8s_role_policy.json
-  boundary        = "QualityEngineering"
+  boundary        = "testEngineering"
   clusters        = ["tap"]
 }

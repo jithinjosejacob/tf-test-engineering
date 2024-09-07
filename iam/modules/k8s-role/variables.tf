@@ -3,7 +3,7 @@ variable "aws_account_id" {
 }
 
 variable "env" {
-    description = "Tyro environment this bucket will reside in"
+    description = "environment this bucket will reside in"
 }
 
 variable "source_repo" {
